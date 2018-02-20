@@ -48,19 +48,25 @@ function removeDuplicate(a) {
     }
      return a;
 
-     // [2, 5, 4, 1, 5, 5]
 
+     function removeDuplicate(a);
+     var i;
+     var j;
+
+     // [2, 5, 4, 1, 5, 5]
+     //--------------------------------------------------
      for (i = 0; i<a.length; i++){
          for (j= i+1; j< a.length; j++){
              if(a[j] == a[i]){
                  a.splice(j,1);
              }
         }
+        return a
      }
 
 }
 console.log(removeDuplicate([8, 13, 8, 9, 12, 8, 1, 1, 4, 13]));
-
+//----------------------------------------------------------------
 /*a.Write a function that checks if a given array has odd number of elements.
 Input: [1, 2, 9, 2, 1]
 Output: true
