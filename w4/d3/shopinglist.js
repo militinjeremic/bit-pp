@@ -46,10 +46,10 @@
     var jsList = new ShoppingBag();
     jsList.addProduct(coffee);
     jsList.addProduct(banana);
-    //console.log(jsList.averageProductPrice())
+    console.log(jsList.averageProductPrice())
     console.log(jsList);
-    // console.log(coffee.getInfo());
-    //console.log(banana.getInfo());
+    console.log(coffee.getInfo());
+    console.log(banana.getInfo());
 })();
 
 
