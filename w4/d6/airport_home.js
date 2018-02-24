@@ -171,6 +171,7 @@
     var got2 = createPassenger("Cersei", "Lannister", "e", 14);
     var got3 = createPassenger("Daenerys", "Targaryen", "e", 14);
     var got4 = createPassenger("Tyrion", "Lannister");
+    var got5 = createPassenger("Arya", "Stark");
 
     //PRVI let sa 1 putnikom
     var passengerTest = createPassenger("test", "testic", "a", 9);
@@ -180,6 +181,7 @@
     firstFligth.addPassenger(got1);
     firstFligth.addPassenger(got2);
     firstFligth.addPassenger(got3);
+    firstFligth.addPassenger(got5);
     console.log(firstFligth.getData());
 
     //DRUGI let sa 2 putnika
@@ -189,6 +191,7 @@
     var secoundFligth = createFlight('12.05.2015', "Belgrade-Borca", []);
     secoundFligth.addPassenger(got3);
     secoundFligth.addPassenger(got4);
+    firstFligth.addPassenger(got5);
     // secoundFligth.addPassenger(passengerTest);
 
     console.log(secoundFligth.getData());
