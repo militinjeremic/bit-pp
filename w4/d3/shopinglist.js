@@ -1,55 +1,70 @@
-'use strict';
+"use strict";
 
 (function () {
     function Product(name, price, expirationDate) {
-
         this.id = (function () {
             var productId;
-            productId = 12345;
+            productId = 13234;
             return productId;
         })();
         this.name = name;
         this.price = price;
         this.expirationDate = expirationDate;
-
-
         this.getInfo = function () {
-            var productCode;
-            productCode = this.name[0] + this.name[this.name.length - 1] + ", " + this.id + ", " + this.expirationDate;
-            return productCode;
-
+            var name = this.name;
+            var productCode = name[0].toUpperCase() + name[name.length - 1].toUpperCase() + this.id;
+            return productCode + ", " + this.name + ", " + this.price;
         };
-    };
+    }
 
     function ShoppingBag() {
         this.list = [];
-        this.averageProductPrice = function () {
-            var sum = 0;
+        this.addProduct = function (product) {
+            //proveriti da li je istekao rok trajanja
+            this.list.push(product);
+        }
+        this.averagePrice = function () {
+            var sumPrice = 0;
             for (var i = 0; i < this.list.length; i++) {
-                sum = sum + this.list[i].price;
+                var product = this.list[i];
+                sumPrice += product.price;
             }
-            var avg = sum / this.list.length;
-            return avg;
+            var averagePrice = sumPrice / this.list.length;
+            return averagePrice;
         }
-
-        this.addProduct = function (p) {
-            this.list.push(p);
+        this.maxPrice = function () {
+            var maxPrice = this.list[0].price;
+            for(var i = 0; i < this.list.length; i++){
+                var product = this.list[i];
+            }
+            if(product.price > maxPrice){
+                maxPrice = product.price;
+            }
+            return maxPrice;
         }
-    };
+        this.totalPrice = function () {
+            var totalPrice = 0;
+            for (var i = 0; i < this.list.length; i++) {
+                var product = this.list[i];
+                var totalPrice = totalPrice + product.price;
+            }
+            return totalPrice;
+        }
+    }
 
     var coffeeExpirationDate = new Date(2018, 7, 13);
-    var bananaExpirationDate = new Date(2018, 4, 15);
-    var coffee = new Product('Grand kafa', 120.45, coffeeExpirationDate);
-    var banana = new Product("Banana", 135.50, bananaExpirationDate);
-    var weekendBag = new ShoppingBag();
+    var coffee = new Product("Grand kafa", 102.45, coffeeExpirationDate);
+    var milkExpirationDate = new Date(2018, 9, 13);
+    var milk = new Product("Milk", 95, new Date(2018, 8, 15));
+    var chocolateExpirationDate = new Date(2018, 11, 13);
+    var chocolate = new Product("Najlepse zelje", 205.75, chocolateExpirationDate);
 
-    var jsList = new ShoppingBag();
-    jsList.addProduct(coffee);
-    jsList.addProduct(banana);
-    console.log(jsList.averageProductPrice())
-    console.log(jsList);
-    console.log(coffee.getInfo());
-    console.log(banana.getInfo());
+    var myBag = new ShoppingBag();
+    myBag.addProduct(coffee);
+    myBag.addProduct(milk);
+    myBag.addProduct(chocolate);
+    console.log(myBag.list);
+    console.log("The average price is " + myBag.averagePrice());
+    console.log("The highest price is " + myBag.maxPrice());
+    console.log("The total price is " + myBag.totalPrice());
 })();
-
-
