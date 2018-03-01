@@ -23,12 +23,12 @@
                 </div>
                 <div class="form">
                     <label>Length(min)</label>
-                    <input type="number" class="form-control"placeholder="Length in min" id="movie_length" required>
+                    <input type="number" class="form-control" placeholder="Length in min" id="movie_length" required>
                 </div>
                 <div class="col-auto my-1" id="dropDown">
                     <label class="mr-sm-2" for="inlineFormCustomSelect"></label>
                     <select class="custom-select mr-sm-2" id="luka">
-                        <option selected >Choose...</option>
+                        <option selected>Choose...</option>
                         <option value="action">Action</option>
                         <option value="drama">Drama</option>
                         <option value="comedy">Comedy</option>
@@ -40,16 +40,20 @@
 
                 <input type='button' class="btn" value="Create Movie">
             </form>
+
             <ul id="movie-list">
-                
             </ul>
-            
+
+            <p>All movies length:
+                <span class="counter"></span>
+            </p>
+
 
         </div>
 
     </div>
 
-<script src="movieJs.js"></script>
+    <script src="movieJs.js"></script>
 </body>
 
 </html>

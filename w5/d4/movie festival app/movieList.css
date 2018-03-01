@@ -30,9 +30,10 @@ form{
     border:1px solid black;
     padding:40px;
 }
-.p2{
-    position:
+ul:nth-child(2n+0) {
+    background-color:grey;
 }
+
 
 
 

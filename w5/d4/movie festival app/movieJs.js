@@ -17,17 +17,16 @@ function Movie(movieTitle, movieLength, movieGenre) {
     this.getData = function () {
         var c = "";
 
-        c = this.movieTitle + " " + this.movieLength + " " + this.getAbb();
+        c = this.movieTitle + " " + this.movieLength + "min" + " " + this.getAbb();
         return c;
     }
 }
 
 //lista filmova
 var allMovies = [];
-
+var allMoviesLength = 0;
 //funkcionalni interfejs
 //definistati klik add movei
-//
 
 document.querySelector(".btn").addEventListener("click", function (event) {
 
@@ -56,10 +55,15 @@ document.querySelector(".btn").addEventListener("click", function (event) {
     someList = document.getElementById('movie-list');
     someList.appendChild(newEl);
 
+    var moviesLengthCount = function(){
+        var mLength = parseInt(movie.movieLength);
+        allMoviesLength += mLength;
+    }
 
+    moviesLengthCount();
 
-
-
+    var counterNode = document.getElementsByClassName("counter")[0];
+    counterNode.textContent = allMoviesLength;
 
     //6--- azuriramo inerfejs
 
