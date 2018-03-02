@@ -20,7 +20,10 @@ function Movie(movieTitle, movieLength, movieGenre) {
         c = this.movieTitle + " " + this.movieLength + "min" + " " + this.getAbb();
         return c;
     }
+
 }
+function Program ()
+//prazna lista sfiloma i broj filmova u listi i datum
 
 //lista filmova
 var allMovies = [];
@@ -37,8 +40,37 @@ document.querySelector(".btn").addEventListener("click", function (event) {
 
     var movieGenreIndex = document.querySelector("#luka").selectedIndex;
     movieGenreValue = document.querySelector("#luka").options[movieGenreIndex].value;
-
+    
     //2--- validacija
+
+    var divError = document.getElementById("error");
+    var textError = document.createElement("p");
+    divError.appendChild(textError);
+    
+  
+    var error = {
+        OK: '',
+        INSERT_TITLE: 'Please insert Movie title',
+        INSERT_LENGTH: 'Please check movie length',
+        SELECT_GENRE: 'Please check movie genre'
+    }
+
+    if (movieTitle === '') {
+        return textError.innerHTML = error.INSERT_TITLE;
+    }
+
+    if (isNaN(movieLength) || movieLength === '') {
+        return textError.innerHTML = error.INSERT_LENGTH;
+        
+    
+
+    } if (movieGenreValue === "-") {
+        return textError.innerHTML = error.SELECT_GENRE;
+        // textError.innerHTML="";
+
+    }
+
+
     //3--- napravtiti onjekat koji predstavlja film
 
 
@@ -55,7 +87,7 @@ document.querySelector(".btn").addEventListener("click", function (event) {
     someList = document.getElementById('movie-list');
     someList.appendChild(newEl);
 
-    var moviesLengthCount = function(){
+    var moviesLengthCount = function () {
         var mLength = parseInt(movie.movieLength);
         allMoviesLength += mLength;
     }
@@ -66,6 +98,7 @@ document.querySelector(".btn").addEventListener("click", function (event) {
     counterNode.textContent = allMoviesLength;
 
     //6--- azuriramo inerfejs
+
 
 
 

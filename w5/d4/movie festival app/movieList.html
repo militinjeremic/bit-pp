@@ -15,7 +15,7 @@
     <div class="container">
         <h1>MOVIE LIST</h1>
         <div class="helpBox">
-            <p  align="left">Movie</p>
+            <p align="left">Movie</p>
             <form>
                 <div class="form">
                     <label>Title</label>
@@ -28,7 +28,7 @@
                 <div class="col-auto my-1" id="dropDown">
                     <label class="mr-sm-2" for="inlineFormCustomSelect"></label>
                     <select class="custom-select mr-sm-2" id="luka">
-                        <option selected>Choose...</option>
+                        <option selected>-</option>
                         <option value="action">Action</option>
                         <option value="drama">Drama</option>
                         <option value="comedy">Comedy</option>
@@ -39,6 +39,7 @@
                 </div>
 
                 <input type='button' class="btn" value="Create Movie">
+                <div id="error"></div>
             </form>
 
             <ul id="movie-list">
@@ -47,13 +48,44 @@
             <p align="right">All movies length:
                 <span class="counter"></span>
             </p>
+            <form>
+                <div class="form">
+                    <label>Date</label>
+                    <input type="date" class="form-control" placeholder="dd mm yy" id="date" required>
+                    <input type='button' class="btn1" value="Create Program">
 
+                </div>
+                <div class="form">
+                    <div class="col-auto my-1" id="dropDown">
+                        <label class="custom-select custom-select-lg mb-3" for="inlineFormCustomSelect">Movie</label>
+                        <select class="custom-select mr-sm-2" id="luka">
+                            <option selected>-</option>
+                            <option></option>
+                        </select>
+
+                        <div class="form">
+                            <div class="col-auto my-1" id="dropDown">
+                                <label class="custom-select custom-select-lg mb-3" for="inlineFormCustomSelect">Program</label>
+                                <select class="custom-select mr-sm-2" id="luka1">
+                                    <option selected>-</option>
+                                    <option></option>
+                                </select>
+                                <input type='button' class="btn2" value="Add movie to the program">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+            </form>
+
+            </div>
 
         </div>
-
-    </div>
-
-    <script src="movieJs.js"></script>
+        <script src="ententies.js"></script>
+        <script src="movieJs.js"></script>
 </body>
 
 </html>
