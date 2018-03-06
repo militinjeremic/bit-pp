@@ -1,28 +1,33 @@
 'use strict';
 var subjectInput = document.querySelector('.add-subject');
-var subjectIndex = subjectInput.selectedIndex;
+// var subjectIndex = subjectInput.selectedIndex;
 var studentNameInput = document.querySelector('.add-student-name');
 var grade = document.querySelector('.add-grade');
 
 var validateSubject = document.querySelector('.validate-subject');
-var validateSubjectValue = validateSubject.innerHTML;
+// var validateSubjectValue = validateSubject.innerHTML;
 
 var validateStudent = document.querySelector('.validate-student');
-var validateStudentValue = validateStudent.innerHTML;
+// var validateStudentValue = validateStudent.innerHTML;
 
 var validateGrade = document.querySelector('.validate-grade');
-var validateGradeValue = validateStudent.innerHTML;
+var countExamPassed = document.querySelector('.exam-passed-count');
+var countExamFailed = document.querySelector('.exam-failed-count');
+var examCountTotal = document.querySelector('.exam-total');
+var percentageExamPassed = document.querySelector('.exam-passed-percentage');
+var percentageExamFailed = document.querySelector('.exam-failed-percentage');
 
+
+// var validateGradeValue = validateStudent.innerHTML;
 
 function collectData() {
-    var subjectValue = subjectInput.options[subjectIndex].value;
-
+    var subjectSelectedValue= subjectInput.value;
+    // var subjectValue = subjectInput.options[subjectIndex].text;
     var studentNameText = studentNameInput.value;
-
     var gradeValue = grade.value;
 
     return {
-        subject: subjectValue,
+        subject: subjectSelectedValue,
         studentID: studentNameText,
         grade: gradeValue
     }
@@ -45,42 +50,85 @@ function validateData() {
 
     }
     */
-    if (subjectInput === '') {
-        validateSubjectValue = validateErrors.SUBJECT_ERROR;
-        return;
+    if (subjectInput.value == '') {
+        setSubjectError(validateErrors.SUBJECT_ERROR);
+        // validateSubjectValue = validateErrors.SUBJECT_ERROR;
+        // return;
     };
-    if (!(isNaN(studentNameInput)) || studentNameInput === '') {
-        validateStudentValue = validateErrors.STUDENT_ERROR;
-        return;
+    if (studentNameInput.value == '') {
+        setStudentError(validateErrors.STUDENT_ERROR);
+        // validateStudentValue = validateErrors.STUDENT_ERROR;
+        // return;
     };
-    if ((isNaN(grade)) || grade === '') {
-        validateGradeValue = validateErrors.GRADE_ERROR
-        return;
+    if (grade.value == '') {
+        setGradeError(validateErrors.GRADE_ERROR);
+        // validateGradeValue = validateErrors.GRADE_ERROR
+        // return;
     };
 }
 
-// var p = document.createElement('p');
-// p.innerHTML = data.subject + " " + data.studentID + " " + data.grade
-// var passedList = document.querySelector('passed-list').appendChild(p);
-// var failedList = document.querySelector('failed-list').appendChild(p);
-// if (data.grade > 5) {
-//     passedList;
-// }
-// else if (data.grade < 5) {
-//     failedList;
-// };
-// //provertiti sve ovo nije zavrseno!!!
-// var passFailed = {
-//     passed: 0,
-//     failed: 0,
-//     total: function () {
-//         return this.passed + this.failed;
-//     },
-//     percent: function (x) {
-//         var a = x * 100 / this.total();
-//         return a.toPrecision(4) + '%';
-//     }
-// };
+var setSubjectError = function(dataMsg){
+    return validateSubject.innerHTML = dataMsg
+}
+
+var setStudentError = function(dataMsg){
+    return validateStudent.innerHTML = dataMsg
+}
+var setGradeError = function(dataMsg){
+    return validateGrade.innerHTML = dataMsg
+}
+
+//provertiti sve ovo nije zavrseno!!!
+var passFailed = {
+    passed: 0,
+    failed: 0,
+    total: function () {
+        return this.passed + this.failed;
+    },
+    percent: function (x) {
+        var a = x * 100 / this.total();
+        return a.toPrecision(4) + '%';
+    }
+};
+
+var addStudentInList = function(){
+    var subject= subjectInput.value;
+    // var subjectValue = subjectInput.options[subjectIndex].text;
+    var studentName = studentNameInput.value;
+    var studentGrade = grade.value;
+    
+    var li = document.createElement('li');
+    var student = subject + " " + studentName + " " + studentGrade;
+    var studentTxt = document.createTextNode(student);
+    li.appendChild(studentTxt);
+    // p.innerHTML = subject + " " + studentName + " " + grade
+    // var passedList = document.querySelector('passed-list').appendChild(p);
+    // var failedList = document.querySelector('failed-list').appendChild(p);
+    if (studentGrade > 5) {
+        passFailed.passed++;
+        document.querySelector('.passed-list').appendChild(li);
+    }
+    else if (studentGrade <= 5) {
+        passFailed.failed++;
+        document.querySelector('.failed-list').appendChild(li);
+    };
+
+    refreshGradesAndPercent();
+}
+
+var refreshGradesAndPercent = function(){
+    countExamPassed.innerHTML = passFailed.passed;
+    countExamFailed.innerHTML = passFailed.failed;
+    examCountTotal.innerHTML = passFailed.total();
+    percentageExamFailed.innerHTML = passFailed.percent(passFailed.failed);
+    percentageExamPassed.innerHTML = passFailed.percent(passFailed.passed);
+    //iscitamo querySelctorom ona dva polja 
+    //da setujemo passFailed.passed i failed
+    //i da setujemo procente sto je funckcija procenti hasfailed metode
+
+}
+
+
 
 
 

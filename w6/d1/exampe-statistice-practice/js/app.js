@@ -9,6 +9,7 @@ document.querySelector('.add-btn').addEventListener('click', function(){
   var validateD = validateData();
 
     // create objects
+  var addStudent = addStudentInList();
 
     // update lists
 
