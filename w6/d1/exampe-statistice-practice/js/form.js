@@ -1,33 +1,38 @@
 'use strict';
+var subjectInput = document.querySelector('.add-subject');
+var subjectIndex = subjectInput.selectedIndex;
+var studentNameInput = document.querySelector('.add-student-name');
+var grade = document.querySelector('.add-grade');
 
-
-var validateSubject = document.getElementsByClassName('validate-subject');
+var validateSubject = document.querySelector('.validate-subject');
 var validateSubjectValue = validateSubject.innerHTML;
 
-var validateStudent = document.getElementsByClassName('validate-student');
+var validateStudent = document.querySelector('.validate-student');
 var validateStudentValue = validateStudent.innerHTML;
 
-var validateGrade = document.getElementsByClassName('validate-grade');
+var validateGrade = document.querySelector('.validate-grade');
 var validateGradeValue = validateStudent.innerHTML;
 
 
-function CollectData() {
-    var SubjectInput = document.getElementsByClassName('add-subject');
-    var SubjectIndex = SubjectInput.selectedIndex;
-    var SubjectValue = SubjectIndex.option[SubjectIndex].value;
+function collectData() {
+    var subjectValue = subjectInput.options[subjectIndex].value;
 
-    var StudentNameInput = document.getElementsByClassName('add-student-name')[0];
-    var StudentNameText = StudentNameInput.value;
+    var studentNameText = studentNameInput.value;
 
-    var grade = document.getElementsByClassName('add-grade');
     var gradeValue = grade.value;
+
+    return {
+        subject: subjectValue,
+        studentID: studentNameText,
+        grade: gradeValue
+    }
 };
 
-function ValidateData() {
+function validateData() {
 
     var validateErrors = {
         SUBJECT_OK: 'OK',
-        SUBJECT_ERROR: 'Plesae select subject',
+        SUBJECT_ERROR: 'Please select subject',
         STUDENT_OK: 'OK',
         STUDENT_ERROR: 'Please enter name',
         GRADE_OK: 'OK',
@@ -40,16 +45,42 @@ function ValidateData() {
 
     }
     */
-    if (SubjectValue === '') {
+    if (subjectInput === '') {
         validateSubjectValue = validateErrors.SUBJECT_ERROR;
+        return;
     };
-    if (!(isNaN(StudentNameText)) || StudentNameText === '') {
+    if (!(isNaN(studentNameInput)) || studentNameInput === '') {
         validateStudentValue = validateErrors.STUDENT_ERROR;
+        return;
     };
-    if ((isNaN(gradeValue)) || gradeValue === '') {
+    if ((isNaN(grade)) || grade === '') {
         validateGradeValue = validateErrors.GRADE_ERROR
+        return;
     };
+}
+
+// var p = document.createElement('p');
+// p.innerHTML = data.subject + " " + data.studentID + " " + data.grade
+// var passedList = document.querySelector('passed-list').appendChild(p);
+// var failedList = document.querySelector('failed-list').appendChild(p);
+// if (data.grade > 5) {
+//     passedList;
+// }
+// else if (data.grade < 5) {
+//     failedList;
+// };
+// //provertiti sve ovo nije zavrseno!!!
+// var passFailed = {
+//     passed: 0,
+//     failed: 0,
+//     total: function () {
+//         return this.passed + this.failed;
+//     },
+//     percent: function (x) {
+//         var a = x * 100 / this.total();
+//         return a.toPrecision(4) + '%';
+//     }
+// };
 
 
-};
 

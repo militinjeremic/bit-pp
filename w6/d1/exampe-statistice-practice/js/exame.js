@@ -12,9 +12,10 @@ Exam.prototype.getExamInfo = function () {
 };
 Exam.prototype.hasPassed = function () {
     if (this.grade > 5) {
-        return examPass.PASSED;
+        return true;
+    } else if (this.grade <= 5) {
+        return false;
     }
-    return examPass.FAILED;
 
     //(this.grade > 5) = examPass.PASSED ? examPass.PASSED : examPass.FAILED;
 }
