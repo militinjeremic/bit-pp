@@ -34,29 +34,31 @@ const mainModule = ((UIModule, dataModule) => {
         });
         request2.done(response => {
             seasons = dataModule.adaptSeason(response);
+            const request3 = $.ajax({
+                url: 'http://api.tvmaze.com/shows/' + id + '/cast',
+                method: "GET"
+            });
+            request3.done(response => {
+                casts = dataModule.adaptCasts(response);
+                const request = $.ajax({
+                    url: 'http://api.tvmaze.com/shows/' + id,
+                    method: "GET"
+                });
+        
+                request.done(response => {
+                    const show = dataModule.adaptTvShowDetails(response.name, response.image.original, id, seasons, casts, response.summary);
+                    console.log(show);
+                    //TODO: uzmemo sve ovo i posaljemo u neku metodu da sredi html!
+                    UIModule.displaySingleShow(show);
+                console.log(casts);
+
+            });
             console.log(seasons);
         });
 
-        const request3 = $.ajax({
-            url: 'http://api.tvmaze.com/shows/' + id + '/cast',
-            method: "GET"
-        });
-        request3.done(response => {
-            casts = dataModule.adaptCasts(response);
-            console.log(casts);
 
-        });
 
-        const request = $.ajax({
-            url: 'http://api.tvmaze.com/shows/' + id,
-            method: "GET"
-        });
 
-        request.done(response => {
-            const show = dataModule.adaptTvShowDetails(response.name, response.image.original, id, seasons, casts, response.summary);
-            console.log(show);
-            //TODO: uzmemo sve ovo i posaljemo u neku metodu da sredi html!
-            UIModule.displaySingleShow(show);
 
         });
         // }
