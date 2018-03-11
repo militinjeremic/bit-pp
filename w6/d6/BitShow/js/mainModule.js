@@ -65,7 +65,7 @@ const mainModule = ((UIModule, dataModule) => {
 
         // $("body").on('change', '#search', function () {
         //     var searchInput = $(this).val();
-        //     console.log(searchInput);
+        //     console.log(searchInput);123
 
         // const request = $.ajax({
         //     url: 'http://api.tvmaze.com/search/shows?q='+searchInput,
