@@ -7,7 +7,7 @@ const mainModule = ((UIModule, dataModule) => {
 
         request.done(response => {
             const shows = dataModule.adaptTvShows(response);
-            console.log(shows);    
+            console.log(shows);
             UIModule.displayMainPage(shows);
         });
     }
@@ -24,7 +24,7 @@ const mainModule = ((UIModule, dataModule) => {
 
     const returnShowDetails = () => {
         var id = localStorage.getItem('id');
-        
+
 
         let seasons = null;
         let casts = null;
@@ -32,38 +32,38 @@ const mainModule = ((UIModule, dataModule) => {
             url: 'http://api.tvmaze.com/shows/' + id + '/seasons',
             method: "GET"
         });
-            request2.done(response => {
-                seasons = dataModule.adaptSeason(response);
-                console.log(seasons);           
-            });
+        request2.done(response => {
+            seasons = dataModule.adaptSeason(response);
+            console.log(seasons);
+        });
 
         const request3 = $.ajax({
             url: 'http://api.tvmaze.com/shows/' + id + '/cast',
             method: "GET"
         });
-            request3.done(response => {
-                casts = dataModule.adaptCasts(response);
-                console.log(casts);
+        request3.done(response => {
+            casts = dataModule.adaptCasts(response);
+            console.log(casts);
 
-            });
-        
+        });
+
         const request = $.ajax({
             url: 'http://api.tvmaze.com/shows/' + id,
             method: "GET"
         });
 
-            request.done(response => {
-                const show = dataModule.adaptTvShowDetails(response.name,response.image.original,id,seasons,casts,response.summary);
-                console.log(show);
-                //TODO: uzmemo sve ovo i posaljemo u neku metodu da sredi html!
-                UIModule.displaySingleShow(show);
-        
-            });
-    }
+        request.done(response => {
+            const show = dataModule.adaptTvShowDetails(response.name, response.image.original, id, seasons, casts, response.summary);
+            console.log(show);
+            //TODO: uzmemo sve ovo i posaljemo u neku metodu da sredi html!
+            UIModule.displaySingleShow(show);
 
-    $("body").on('change', '#search', function () {
-        var searchInput = $(this).val();
-        console.log(searchInput);
+        });
+        // }
+
+        // $("body").on('change', '#search', function () {
+        //     var searchInput = $(this).val();
+        //     console.log(searchInput);
 
         // const request = $.ajax({
         //     url: 'http://api.tvmaze.com/search/shows?q='+searchInput,
@@ -76,7 +76,7 @@ const mainModule = ((UIModule, dataModule) => {
         //     UIModule.displayMainPage(shows);
         // });
 
-    });
+    };
 
     return {
         init,
