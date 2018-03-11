@@ -12,7 +12,7 @@ let UIModule = (() => {
             
             const element = `
             <div class="card">
-                <div class="card-body" id= "${showId}">
+                <div class="card-body" s= "${showId}">
                     <img src="${showImage}" alt="show"><br>
                     <a href="show-info.html" class="card-link">${showName}</a></div>
                 </div>

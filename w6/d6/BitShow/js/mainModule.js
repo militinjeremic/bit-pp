@@ -61,19 +61,22 @@ const mainModule = ((UIModule, dataModule) => {
             });
     }
 
+    $("body").on('change', '#search', function () {
+        var searchInput = $(this).val();
+        console.log(searchInput);
 
+        // const request = $.ajax({
+        //     url: 'http://api.tvmaze.com/search/shows?q='+searchInput,
+        //     method: "GET"
+        // });
 
-    // let el = `<div><h1></h1><img src="" alt=""></div>`
-    // $("#singleShow").append(el);
+        // request.done(response => {
+        //     const shows = dataModule.adaptTvShows(response);
+        //     console.log(shows);    
+        //     UIModule.displayMainPage(shows);
+        // });
 
-    // let seasonRequest = $.ajax({
-    //     url: `https://api.tvmaze.com/shows/${test}/seasons`,
-    //     method: 'GET'
-    // })
-    // seasonRequest.done(function (resSeasons) {
-
-
-    // })
+    });
 
     return {
         init,
